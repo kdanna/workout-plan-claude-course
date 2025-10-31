@@ -2,6 +2,18 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## CRITICAL: Documentation-First Development
+
+**ALWAYS consult the relevant documentation files in the `/docs` directory BEFORE generating any code.**
+
+When implementing features or writing code:
+1. **FIRST** - Check if a relevant documentation file exists in `/docs` for the technology/library you're using
+2. **READ** - Read and understand the documentation thoroughly
+3. **THEN** - Generate code that follows the patterns and best practices from those docs
+4. **VERIFY** - Ensure your implementation aligns with the documented approaches
+
+The `/docs` directory contains authoritative reference material for this project. Never guess at API usage or patterns when documentation is available.
+
 ## Project Overview
 
 This is a workout plan application built with Next.js 16, React 19, TypeScript, and Tailwind CSS v4. The project is in early stages and currently contains only the default Next.js starter template.
