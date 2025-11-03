@@ -88,3 +88,26 @@ export async function getUserWorkoutWithExercises(workoutId: number, userId: str
     exercises: exercisesWithSets,
   };
 }
+
+/**
+ * Creates a new workout for a user.
+ * CRITICAL: Always include userId to ensure data isolation.
+ */
+export async function createWorkout(data: {
+  name: string;
+  date: Date;
+  notes?: string;
+  userId: string;
+}) {
+  const [workout] = await db
+    .insert(workouts)
+    .values({
+      name: data.name,
+      date: data.date,
+      notes: data.notes,
+      userId: data.userId,
+    })
+    .returning();
+
+  return workout;
+}

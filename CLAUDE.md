@@ -15,6 +15,8 @@ When implementing features or writing code:
 The `/docs` directory contains authoritative reference material for this project. Never guess at API usage or patterns when documentation is available. Files include:
 - /docs/ui.md
 - /docs/data-fetching.md
+- /docs/data-mutations.md
+- /docs/auth.md
 
 ## Project Overview
 
