@@ -17,6 +17,8 @@ The `/docs` directory contains authoritative reference material for this project
 - /docs/data-fetching.md
 - /docs/data-mutations.md
 - /docs/auth.md
+- /docs/server-components.md
+- /docs/routing.md
 
 ## Project Overview
 
