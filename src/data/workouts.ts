@@ -88,3 +88,75 @@ export async function getUserWorkoutWithExercises(workoutId: number, userId: str
     exercises: exercisesWithSets,
   };
 }
+
+/**
+ * Creates a new workout for a user.
+ * CRITICAL: Always include userId to ensure data isolation.
+ */
+export async function createWorkout(data: {
+  name: string;
+  date: Date;
+  notes?: string;
+  userId: string;
+}) {
+  const [workout] = await db
+    .insert(workouts)
+    .values({
+      name: data.name,
+      date: data.date,
+      notes: data.notes,
+      userId: data.userId,
+    })
+    .returning();
+
+  return workout;
+}
+
+/**
+ * Updates a workout for a specific user.
+ * CRITICAL: Must verify both workout ID and user ID match.
+ */
+export async function updateWorkout(
+  workoutId: number,
+  userId: string,
+  data: {
+    name?: string;
+    date?: Date;
+    notes?: string;
+  }
+) {
+  const [workout] = await db
+    .update(workouts)
+    .set({
+      ...data,
+      updatedAt: new Date(),
+    })
+    .where(
+      and(
+        eq(workouts.id, workoutId),
+        eq(workouts.userId, userId)
+      )
+    )
+    .returning();
+
+  return workout;
+}
+
+/**
+ * Fetches a single workout for a specific user.
+ * CRITICAL: Must verify both workout ID and user ID match.
+ */
+export async function getUserWorkout(workoutId: number, userId: string) {
+  const result = await db
+    .select()
+    .from(workouts)
+    .where(
+      and(
+        eq(workouts.id, workoutId),
+        eq(workouts.userId, userId)
+      )
+    )
+    .limit(1);
+
+  return result[0] || null;
+}
