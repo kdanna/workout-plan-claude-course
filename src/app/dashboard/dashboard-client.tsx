@@ -114,7 +114,7 @@ export default function DashboardClient({ workouts, selectedDate }: Props) {
                     <p className="text-muted-foreground mb-4">
                       No workouts logged for this date
                     </p>
-                    <Button>Log New Workout</Button>
+                    <Button onClick={() => router.push('/dashboard/workout/new')}>Log New Workout</Button>
                   </div>
                 )}
               </div>
